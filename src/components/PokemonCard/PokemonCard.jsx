@@ -5,7 +5,6 @@ import {
   Title,
   Type,
   Abilities,
-  Stats,
   StatsList,
   StatsListItem,
   Span,
