@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import backgroundHeader from '../../assets/images/backgroundHeader.jpg';
 
 export const Head = styled.header`
   display: flex;
@@ -7,7 +8,11 @@ export const Head = styled.header`
   height: 50px;
   padding: 8px;
 
-  background-color: #d62618;
+  background-image: url(${backgroundHeader});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100px;
 `;
 
 export const Navigation = styled.nav`
@@ -15,14 +20,15 @@ export const Navigation = styled.nav`
 `;
 
 export const NavigationItem = styled(NavLink)`
-  color: white;
+  color: #333;
   text-decoration: none;
 
   padding: 5px;
   border-radius: 2px;
   margin-left: 8px;
+
   &.active {
-    // background-color: white;
-    color: lightseagreen;
+    background-color: #f5deb3;
+    color: #333;
   }
 `;

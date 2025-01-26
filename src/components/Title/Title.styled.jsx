@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Text = styled.p`
-  font-size: 18px;
+export const SecondTitle = styled.h2`
   text-align: center;
 `;
