@@ -11,13 +11,13 @@ import PokemonList from '../../components/PokemonList/PokemonList';
 const Search = () => {
   const [pokemons, setPokemons] = useState([]);
   const [type, setType] = useState('');
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!type) return;
 
     const fetchData = async () => {
-      setLoading(true);
+      // setLoading(true);
 
       try {
         let data;
@@ -31,7 +31,7 @@ const Search = () => {
       } catch (error) {
         console.error('Ошибка при поиске покемонов:', error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 
