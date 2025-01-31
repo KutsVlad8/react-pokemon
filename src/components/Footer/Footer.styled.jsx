@@ -16,5 +16,5 @@ export const Text = styled.p`
   margin: 0px;
   margin-top: 40px;
   text-align: center;
-  color: white;
+  color: #333;
 `;
