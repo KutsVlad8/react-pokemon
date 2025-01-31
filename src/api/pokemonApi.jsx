@@ -29,3 +29,17 @@ export const fetchPokemonByName = async name => {
     throw new Error('Error fetching pokemon by name: ' + error.message);
   }
 };
+
+// Запрос покемона по типу
+export const fetchPokemonByType = async type => {
+  try {
+    const response = await api.get(`type/${type.toLowerCase()}`);
+
+    // Берем только первых 10 покемонов
+    const pokemons = response.data.pokemon.slice(0, 10).map(p => p.pokemon);
+
+    return pokemons;
+  } catch (error) {
+    throw new Error('Error fetching pokemon by type: ' + error.message);
+  }
+};
