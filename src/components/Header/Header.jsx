@@ -6,7 +6,7 @@ const Header = () => {
       <Navigation>
         <div>
           <NavigationItem to="/">Home</NavigationItem>
-          <NavigationItem to="/About">About</NavigationItem>
+          <NavigationItem to="/Search">Search</NavigationItem>
         </div>
       </Navigation>
     </Head>
