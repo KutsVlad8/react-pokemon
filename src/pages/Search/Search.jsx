@@ -45,7 +45,6 @@ const Search = () => {
 
   return (
     <>
-      <h1>О нас</h1>
       <SearchForm onSearch={handleSearch} />
 
       {pokemons.length === 0 ? (
