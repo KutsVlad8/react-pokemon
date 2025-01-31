@@ -6,8 +6,6 @@ const SearchForm = ({ onSearch }) => {
   };
 
   const handleSearch = values => {
-    console.log('old type', values);
-
     onSearch(values);
   };
 
@@ -28,7 +26,6 @@ const SearchForm = ({ onSearch }) => {
               </Field>
             </label>
 
-            {/* Кнопка поиска */}
             <button type="submit">Поиск</button>
           </Form>
         )}

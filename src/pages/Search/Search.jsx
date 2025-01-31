@@ -2,10 +2,11 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 // Api запрос
-import { fetchPokemonByType } from '../../api/pokemonApi';
+import { fetchAllPokemons, fetchPokemonByType } from '../../api/pokemonApi';
 
 // Компоненты
 import SearchForm from '../../components/SearchForm/SearchForm';
+import PokemonList from '../../components/PokemonList/PokemonList';
 
 const Search = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -19,7 +20,13 @@ const Search = () => {
       setLoading(true);
 
       try {
-        const data = await fetchPokemonByType(type);
+        let data;
+        if (type.type === 'all') {
+          data = await fetchAllPokemons();
+        } else {
+          data = await fetchPokemonByType(type);
+        }
+
         setPokemons(data);
       } catch (error) {
         console.error('Ошибка при поиске покемонов:', error);
@@ -31,21 +38,21 @@ const Search = () => {
     fetchData();
   }, [type]);
 
-  // Обновляем `type` при отправке формы
   const handleSearch = values => {
-    console.log('new type', values.type);
     setPokemons([]);
-    setType(values.type);
+    setType(values);
   };
-
-  console.log(pokemons);
 
   return (
     <>
-      <div>
-        <h1>О нас</h1>
-        <SearchForm onSearch={handleSearch} />
-      </div>
+      <h1>О нас</h1>
+      <SearchForm onSearch={handleSearch} />
+
+      {pokemons.length === 0 ? (
+        <p>Введите тип в строку поиска</p>
+      ) : (
+        <PokemonList pokemonData={pokemons} />
+      )}
     </>
   );
 };
