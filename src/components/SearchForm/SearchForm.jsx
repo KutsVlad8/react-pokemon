@@ -1,4 +1,11 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
+import {
+  FormContainer,
+  StyledForm,
+  StyledLabel,
+  StyledField,
+  Button,
+} from './SearchForm.styled';
 
 const SearchForm = ({ onSearch }) => {
   const initialValues = {
@@ -10,27 +17,38 @@ const SearchForm = ({ onSearch }) => {
   };
 
   return (
-    <>
+    <FormContainer>
       <Formik initialValues={initialValues} onSubmit={handleSearch}>
         {() => (
-          <Form>
-            <label>
+          <StyledForm>
+            <StyledLabel font-size="18">
               Выберите тип покемона:
-              <Field as="select" name="type">
-                <option value="">Выберете тип</option>
-                <option value="all">Все</option>
-                <option value="fire">Огонь</option>
-                <option value="water">Вода</option>
-                <option value="grass">Трава</option>
-                <option value="electric">Электричество</option>
-              </Field>
-            </label>
+              <StyledField as="select" name="type">
+                <option value="">Select type</option>
+                <option value="all">All</option>
+                <option value="fire">Fire</option>
+                <option value="water">Water</option>
+                <option value="ice">Ice</option>
+                <option value="grass">Grass</option>
+                <option value="ground">Ground</option>
+                <option value="steel">Steel</option>
+                <option value="rock">Rock</option>
+                <option value="bug">Bug</option>
+                <option value="fighting">Fighting</option>
+                <option value="electric">Electric</option>
+                <option value="dark">Dark</option>
+                <option value="psychic">Psychic</option>
+                <option value="poison">Poison</option>
+                <option value="ghost">Ghost</option>
+                <option value="dragon">Dragon</option>
+              </StyledField>
+            </StyledLabel>
 
-            <button type="submit">Поиск</button>
-          </Form>
+            <Button type="submit">Поиск</Button>
+          </StyledForm>
         )}
       </Formik>
-    </>
+    </FormContainer>
   );
 };
 
