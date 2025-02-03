@@ -8,6 +8,6 @@ export const Wrapper = styled.div`
   padding: 20px;
   box-sizing: border-box;
   margin: 0 auto;
-  max-width: 1200px;
-  overflow: hidden; /* Чтобы контент не выходил за пределы */
+  // max-width: 1200px;
+  overflow: hidden;
 `;
