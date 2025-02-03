@@ -34,15 +34,15 @@ export const fetchPokemonByName = async name => {
 
 // Запрос всех покемонов
 
-export const fetchAllPokemons = async () => {
+export const fetchAllPokemons = async (limit, offset) => {
   try {
     // получаем всех покемонов
-    const response = await api.get('pokemon?limit=150');
+    const response = await api.get(`pokemon?limit=${limit}&offset=${offset}`);
 
-    // получаем создаем массив из 20 ссылок на покемонов
-    const pokemonsUrl = response.data.results.slice(0, 20).map(p => p.url);
+    // получаем  массив  ссылок на покемонов
+    const pokemonsUrl = response.data.results.map(p => p.url);
 
-    // получаем массив покемонов по ссылкам
+    // делаем запрос по  массиву  ссылок
 
     const responsPokemons = await Promise.all(
       pokemonsUrl.map(url => api.get(url))
@@ -59,16 +59,14 @@ export const fetchAllPokemons = async () => {
 };
 
 // Запрос покемона по типу
-export const fetchPokemonByType = async ({ type }) => {
+export const fetchPokemonByType = async ({ type }, limit, offset) => {
   try {
     // получаем ссылку покемонов
     const response = await api.get(`type/${type}`);
 
-    // перебираем массив ссылок
+    // перебираем массив ссылок для запроса
 
-    const pokemonsUrl = response.data.pokemon
-      .slice(0, 20)
-      .map(p => p.pokemon.url);
+    const pokemonsUrl = response.data.pokemon.map(p => p.pokemon.url);
 
     // получаем массив покемонов по ссылкам
 
@@ -76,9 +74,11 @@ export const fetchPokemonByType = async ({ type }) => {
       pokemonsUrl.map(url => api.get(url))
     );
 
-    // перебираем массив покемонов для рендера
+    // перебираем массив покемонов и пагинацию покемонов
 
-    const pokemonData = responsPokemons.map(pokemon => pokemon.data);
+    const pokemonData = responsPokemons
+      .map(pokemon => pokemon.data)
+      .slice(offset, offset + limit);
 
     return pokemonData;
   } catch (error) {

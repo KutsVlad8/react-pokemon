@@ -8,12 +8,21 @@ import { fetchAllPokemons, fetchPokemonByType } from '../../api/pokemonApi';
 import SearchForm from '../../components/SearchForm/SearchForm';
 import PokemonList from '../../components/PokemonList/PokemonList';
 
+// Лоадер
+import { quantum } from 'ldrs';
+
+import { ResultsWrapper, Text, ButtonWrapper, Button } from './Search.styled';
+
 const Search = () => {
   const [pokemons, setPokemons] = useState([]);
   const [type, setType] = useState('');
+  const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);
+  const limit = 20;
 
-  console.log(loading);
+  console.log(offset);
+
+  quantum.register('list-loader');
 
   useEffect(() => {
     if (!type) return;
@@ -24,12 +33,11 @@ const Search = () => {
       try {
         let data;
         if (type.type === 'all') {
-          data = await fetchAllPokemons();
+          data = await fetchAllPokemons(limit, offset);
         } else {
-          data = await fetchPokemonByType(type);
+          data = await fetchPokemonByType(type, limit, offset);
         }
-
-        setPokemons(data);
+        setPokemons(prev => [...prev, ...data]);
       } catch (error) {
         console.error('Ошибка при поиске покемонов:', error);
       } finally {
@@ -38,22 +46,35 @@ const Search = () => {
     };
 
     fetchData();
-  }, [type]);
+  }, [type, offset]);
 
   const handleSearch = values => {
-    setPokemons([]);
     setType(values);
+    setPokemons([]);
+    setOffset(0);
+  };
+
+  const loadMore = () => {
+    setOffset(prevOffset => prevOffset + limit);
   };
 
   return (
     <>
       <SearchForm onSearch={handleSearch} />
-
-      {pokemons.length === 0 ? (
-        <p>Введите тип в строку поиска</p>
-      ) : (
-        <PokemonList pokemonData={pokemons} />
-      )}
+      <ResultsWrapper>
+        {pokemons.length === 0 ? (
+          <Text>Введите тип в строку поиска</Text>
+        ) : (
+          <PokemonList pokemonData={pokemons} />
+        )}
+      </ResultsWrapper>
+      <ButtonWrapper>
+        {loading ? (
+          <list-loader size="130" speed="1.8" color="#fbca06" />
+        ) : (
+          pokemons.length > 0 && <Button onClick={loadMore}>Load More</Button>
+        )}
+      </ButtonWrapper>
     </>
   );
 };
