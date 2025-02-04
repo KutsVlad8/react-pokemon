@@ -62,14 +62,16 @@ const Search = () => {
     <>
       <SearchForm onSearch={handleSearch} />
       <ResultsWrapper>
-        {pokemons.length === 0 ? (
-          <Text>Введите тип в строку поиска</Text>
+        {loading && pokemons.length === 0 ? (
+          <list-loader size="130" speed="1.8" color="#fbca06" />
+        ) : pokemons.length === 0 ? (
+          <Text>Select the Pokémon type</Text>
         ) : (
           <PokemonList pokemonData={pokemons} />
         )}
       </ResultsWrapper>
       <ButtonWrapper>
-        {loading ? (
+        {loading && pokemons.length > 0 ? (
           <list-loader size="130" speed="1.8" color="#fbca06" />
         ) : (
           pokemons.length > 0 && <Button onClick={loadMore}>Load More</Button>

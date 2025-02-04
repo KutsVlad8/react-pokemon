@@ -5,14 +5,13 @@ import backgroundHeader from '../../assets/images/backgroundHeader.jpg';
 export const Head = styled.header`
   display: flex;
   align-items: center;
-  height: 50px;
+  height: 115px;
   padding: 8px;
 
   background-image: url(${backgroundHeader});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100px;
 `;
 
 export const Navigation = styled.nav`

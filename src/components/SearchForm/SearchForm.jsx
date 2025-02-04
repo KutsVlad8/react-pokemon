@@ -22,7 +22,7 @@ const SearchForm = ({ onSearch }) => {
         {() => (
           <StyledForm>
             <StyledLabel font-size="18">
-              Выберите тип покемона:
+              Select the Pokémon type:
               <StyledField as="select" name="type">
                 <option value="">Select type</option>
                 <option value="all">All</option>
@@ -44,7 +44,7 @@ const SearchForm = ({ onSearch }) => {
               </StyledField>
             </StyledLabel>
 
-            <Button type="submit">Поиск</Button>
+            <Button type="submit">Search</Button>
           </StyledForm>
         )}
       </Formik>

@@ -54,5 +54,6 @@ export const Button = styled.button`
 
   &:hover {
     background: #fab205;
+    color: #333;
   }
 `;
