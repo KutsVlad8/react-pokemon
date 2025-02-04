@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import backgroundFooter from '../../assets/images/backgroundHeader.jpg';
+import backgroundFooter from '../../assets/images/backgroundFooter.jpg';
 
 export const FooTer = styled.footer`
   height: 50px;
