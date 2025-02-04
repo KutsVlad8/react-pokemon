@@ -33,17 +33,9 @@ const Home = () => {
 
   return (
     <>
-      <MainTitle text="Поринь у світ дивовижних створінь " />
+      <MainTitle text="Dive into the world of amazing creatures" />
 
       <Text>
-        Покемони — це фантастичні істоти, які мешкають у світі, наповненому
-        магією та чар. Подорожі покемонів сповнені дивовижних зустрічей та
-        хвилюючих подій. Разом з тренерами вони борються, розвиваються і вчать
-        нас важливим життєвим урокам, таким як дружба, сміливість,
-        відповідальність, чесність і любов до природи. Вони можуть бути різних
-        типів: вогняні, водяні, крижані та багато інших! Багато покемонів можуть
-        еволюціонувати та ставати ще сильнішими!
-        <br />
         Pokémon are fantastic creatures that inhabit a world full of magic and
         wonder. The journeys of Pokémon are full of amazing encounters and
         exciting events. Together with their trainers, they fight, evolve, and
@@ -52,7 +44,7 @@ const Home = () => {
         types: fire, water, ice, and many others! Many Pokémon can evolve and
         become even stronger!
       </Text>
-      <Title text="Спіймай їх усіх!" />
+      {/* <Title text="Спіймай їх усіх!" /> */}
 
       <PokemonList pokemonData={pokemons} />
     </>
