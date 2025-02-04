@@ -7,7 +7,7 @@ import { fetchRandomPokemons } from '../../api/pokemonApi';
 
 // Компоненты
 import MainTitle from '../../components/MainTitle/MainTitle';
-import Title from '../../components/Title/Title';
+// import Title from '../../components/Title/Title';
 import PokemonList from '../../components/PokemonList/PokemonList';
 
 // Стили
